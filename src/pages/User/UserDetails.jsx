@@ -1,0 +1,44 @@
+import React from "react";
+import { FaUser, FaEnvelope, FaSuitcase } from "react-icons/fa";
+import { useAuth } from "../../context/UserContext";
+
+const UserDetails = () => {
+  const [auth] = useAuth();
+  const users = {
+    name: auth?.user?.name || "N/A",
+    email: auth?.user?.email || "N/A",
+    role: auth?.user?.role || "N/A"
+  };
+
+  return (
+    <div className="flex flex-row ml-16">
+          <div className="p-8 bg-gray-50 mx-8 h-full flex flex-col justify-center">
+            <h2 className="text-2xl font-semibold mb-6 text-gray-800">
+              User Details
+            </h2>
+    
+            <div className="flex items-center text-gray-800 mb-4">
+              <FaUser className="mr-3 text-blue-600 text-lg" />
+              <span>
+                <strong>Name:</strong> {users.name}
+              </span>
+            </div>
+    
+            <div className="flex items-center text-gray-800 mb-4">
+              <FaEnvelope className="mr-3 text-blue-600 text-lg" />
+              <span>
+                <strong>Email:</strong> {users.email}
+              </span>
+            </div>
+            <div className="flex items-center text-gray-800">
+              <FaSuitcase className="mr-3 text-blue-600 text-lg" />
+              <span>
+                <strong>Role:</strong> {users.role}
+              </span>
+            </div>
+          </div>
+        </div>
+  );
+};
+
+export default UserDetails;
